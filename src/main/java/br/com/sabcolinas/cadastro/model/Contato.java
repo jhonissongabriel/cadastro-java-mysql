@@ -10,26 +10,25 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "cont_contato")
 public class Contato {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id_cont")
-	//@JsonView({View.ContatoAvancado.class})
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_cont")
+	// @JsonView({View.ContatoAvancado.class})
 	private Long id;
-	
+
 	@Column(name = "cont_telefone_1", length = 11, nullable = false)
-	//@JsonView({View.ContatoIntermediario.class})
+	// @JsonView({View.ContatoIntermediario.class})
 	private String telefone1;
-	
+
 	@Column(name = "cont_telefone_2", length = 11)
-	//@JsonView({View.ContatoIntermediario.class})
+	// @JsonView({View.ContatoIntermediario.class})
 	private String telefone2;
-	
+
 	@Column(name = "cont_email", length = 50)
-	//@JsonView({View.ContatoIntermediario.class})
+	// @JsonView({View.ContatoIntermediario.class})
 	private String email;
-	
-	
+
 	// GETTERS E SETTERS
 
 	public Long getId() {
@@ -63,7 +62,5 @@ public class Contato {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
-	
+
 }

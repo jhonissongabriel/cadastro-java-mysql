@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +30,11 @@ public class Trabalho {
 	@Column(name = "trab_telefone", length = 11)
 	//@JsonView({View.TrabalhoAvancado.class})
 	private String telefone;
+	
+	@ManyToOne
+	@JoinColumn(name = "ende_id")
+	//@JsonView({View.TrabalhoAvancado.class})
+	private Endereco endereco;
 	
 	
 	// GETTERS E SETTERS
@@ -64,7 +71,13 @@ public class Trabalho {
 		this.telefone = telefone;
 	}
 
-	
-	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 	
 }

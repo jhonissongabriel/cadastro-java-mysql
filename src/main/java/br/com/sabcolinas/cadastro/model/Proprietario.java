@@ -34,6 +34,51 @@ public class Proprietario {
 	@JoinColumn(name = "pess_id")
 	//@JsonView({View.ProprietarioAvancado.class})
 	private Pessoa pessoa;
+	
+	@ManyToOne
+	@JoinColumn(name = "trab_id")
+	//@JsonView({View.ProprietarioAvancado.class})
+	private Trabalho trabalho;
+	
+	@ManyToOne
+	@JoinColumn(name = "conj_id")
+	//@JsonView({View.ProprietarioAvancado.class})
+	private Conjuge conjuge;
+	
+	@ManyToOne
+	@JoinColumn(name = "depe_id")
+	//@JsonView({View.ProprietarioAvancado.class})
+	private Dependente dependente;
+	
+	@ManyToOne
+	@JoinColumn(name = "func_id")
+	//@JsonView({View.ProprietarioAvancado.class})
+	private Funcionario funcionario;
+	
+	@ManyToOne
+	@JoinColumn(name = "ende_id")
+	//@JsonView({View.ProprietarioAvancado.class})
+	private Endereco endereco;
+	
+	@ManyToOne
+	@JoinColumn(name = "cont_id")
+	//@JsonView({View.ProprietarioAvancado.class})
+	private Contato contato;
+	
+	@ManyToOne
+	@JoinColumn(name = "reca_id")
+	//@JsonView({View.ProprietarioAvancado.class})
+	private Recado recado;
+	
+	@ManyToOne
+	@JoinColumn(name = "veic_id")
+	//@JsonView({View.ProprietarioAvancado.class})
+	private Veiculo veiculo;
+	
+	@ManyToOne
+	@JoinColumn(name = "anim_id")
+	//@JsonView({View.ProprietarioAvancado.class})
+	private Animal animal;
 
 	// GETTERS E SETTERS
 	
@@ -67,6 +112,78 @@ public class Proprietario {
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+	}
+
+	public Trabalho getTrabalho() {
+		return trabalho;
+	}
+
+	public void setTrabalho(Trabalho trabalho) {
+		this.trabalho = trabalho;
+	}
+
+	public Conjuge getConjuge() {
+		return conjuge;
+	}
+
+	public void setConjuge(Conjuge conjuge) {
+		this.conjuge = conjuge;
+	}
+
+	public Dependente getDependente() {
+		return dependente;
+	}
+
+	public void setDependente(Dependente dependente) {
+		this.dependente = dependente;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Contato getContato() {
+		return contato;
+	}
+
+	public void setContato(Contato contato) {
+		this.contato = contato;
+	}
+
+	public Recado getRecado() {
+		return recado;
+	}
+
+	public void setRecado(Recado recado) {
+		this.recado = recado;
+	}
+
+	public Veiculo getVeiculo() {
+		return veiculo;
+	}
+
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
+	}
+
+	public Animal getAnimal() {
+		return animal;
+	}
+
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
 	}
 	
 	

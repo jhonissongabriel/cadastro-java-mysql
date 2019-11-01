@@ -29,6 +29,10 @@ public class Animal {
 	//@JsonView({View.AnimalBasico.class})
 	private String nome;
 	
+	@Column(name = "anim_registro", length = 50)
+	//@JsonView({View.AnimalBasico.class})
+	private String registro;
+	
 	@Column(name = "anim_obs", length = 200)
 	//@JsonView({View.AnimalBasico.class})
 	private String obs;
@@ -67,6 +71,14 @@ public class Animal {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public String getRegistro() {
+		return registro;
+	}
+
+	public void setRegistro(String registro) {
+		this.registro = registro;
+	}
 
 	public String getObs() {
 		return obs;
@@ -76,7 +88,4 @@ public class Animal {
 		this.obs = obs;
 	}
 	
-	
-	
-
 }
