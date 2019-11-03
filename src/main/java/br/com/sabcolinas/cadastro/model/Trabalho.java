@@ -19,11 +19,11 @@ public class Trabalho {
 	//@JsonView({View.TrabalhoAvancado.class})
 	private Long id;
 	
-	@Column(name = "trab_empresa", length = 100)
+	@Column(name = "trab_empresa", length = 100, nullable = false)
 	//@JsonView({View.TrabalhoBasico.class})
 	private String empresa;
 	
-	@Column(name = "trab_profissao", length = 50)
+	@Column(name = "trab_profissao", length = 50, nullable = false)
 	//@JsonView({View.TrabalhoIntermediario.class})
 	private String profissao;
 	

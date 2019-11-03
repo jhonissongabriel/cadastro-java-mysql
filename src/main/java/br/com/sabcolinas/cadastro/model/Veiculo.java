@@ -17,23 +17,23 @@ public class Veiculo {
 	//@JsonView({View.VeiculoAvancado.class})
 	private Long id;
 	
-	@Column(name = "veic_tipo", length = 50)
+	@Column(name = "veic_tipo", length = 50, nullable = false)
 	//@JsonView({View.VeiculoBasico.class})
 	private String tipo;
 	
-	@Column(name = "veic_marca", length = 50)
+	@Column(name = "veic_marca", length = 50, nullable = false)
 	//@JsonView({View.VeiculoBasico.class})
 	private String marca;
 	
-	@Column(name = "veic_modelo", length = 50)
+	@Column(name = "veic_modelo", length = 50, nullable = false)
 	//@JsonView({View.VeiculoBasico.class})
 	private String modelo;
 	
-	@Column(name = "veic_cor", length = 50)
+	@Column(name = "veic_cor", length = 50, nullable = false)
 	//@JsonView({View.VeiculoBasico.class})
 	private String cor;
 	
-	@Column(name = "veic_placa", length = 8)
+	@Column(name = "veic_placa", length = 7, unique = true, nullable = false)
 	//@JsonView({View.VeiculoIntermediario.class})
 	private String placa;
 	

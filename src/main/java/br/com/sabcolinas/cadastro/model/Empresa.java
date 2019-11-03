@@ -19,7 +19,7 @@ public class Empresa {
 	//@JsonView({View.EmpresaAvancado.class})
 	private Long id;
 	
-	@Column(name = "empr_cnpj", length = 14, nullable = false)
+	@Column(name = "empr_cnpj", length = 14, unique = true, nullable = false)
 	//@JsonView({View.EmpresaIntermediario.class})
 	private String cnpj;
 	

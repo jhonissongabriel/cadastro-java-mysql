@@ -20,7 +20,7 @@ public class Dependente {
 	//@JsonView({View.DependenteAvancado.class})
 	private Long id;
 	
-	@Column(name = "depe_parentesco", length = 50)
+	@Column(name = "depe_parentesco", length = 50, nullable = false)
 	//@JsonView({View.DependenteIntermediario.class})
 	private String parentesco;
 	

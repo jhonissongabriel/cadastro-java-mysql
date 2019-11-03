@@ -25,7 +25,7 @@ public class Endereco {
 	//@JsonView({View.EnderecoIntermediario.class})
 	private int numero;
 	
-	@Column(name = "ende_codigo", length = 6)
+	@Column(name = "ende_codigo", length = 6, unique = true)
 	//@JsonView({View.EnderecoIntermediario.class})
 	private String codigo;
 	

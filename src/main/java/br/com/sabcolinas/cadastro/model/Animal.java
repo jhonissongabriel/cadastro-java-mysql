@@ -17,19 +17,19 @@ public class Animal {
 	//@JsonView({View.AnimalAvancado.class})
 	private Long id;
 	
-	@Column(name = "anim_tipo", length = 50)
+	@Column(name = "anim_tipo", length = 50, nullable = false)
 	//@JsonView({View.AnimalBasico.class})
 	private String tipo;
 	
-	@Column(name = "anim_raca", length = 50)
+	@Column(name = "anim_raca", length = 50, nullable = false)
 	//@JsonView({View.AnimalBasico.class})
 	private String raca;
 	
-	@Column(name = "anim_nome", length = 50)
+	@Column(name = "anim_nome", length = 50, nullable = false)
 	//@JsonView({View.AnimalBasico.class})
 	private String nome;
 	
-	@Column(name = "anim_registro", length = 50)
+	@Column(name = "anim_registro", length = 50, unique = true, nullable = false)
 	//@JsonView({View.AnimalBasico.class})
 	private String registro;
 	

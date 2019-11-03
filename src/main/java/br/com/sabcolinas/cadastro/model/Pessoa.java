@@ -29,11 +29,11 @@ public class Pessoa {
 	//@JsonView({View.PessoaIntermediario.class})
 	private Date dataNasc;
 	
-	@Column(name = "pess_cpf", length = 11, nullable = false)
+	@Column(name = "pess_cpf", length = 11, unique = true, nullable = false)
 	//@JsonView({View.PessoaIntermediario.class})
 	private String cpf;
 	
-	@Column(name = "pess_rg", length = 10, nullable = false)
+	@Column(name = "pess_rg", length = 10, unique = true, nullable = false)
 	//@JsonView({View.PessoaIntermediario.class})
 	private String rg;
 	
