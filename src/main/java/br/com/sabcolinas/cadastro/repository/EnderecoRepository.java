@@ -73,4 +73,7 @@ public interface EnderecoRepository extends CrudRepository<Endereco, Long> {
 	@Query("select e from Endereco e where e.estado like %?1%")
 	public List<Endereco> buscaEstado(String estado);
 
+	@Query("select e from Endereco e where e.logradouro = %?1% and e.numero = ?2 and e.cep = ?3")
+	public Endereco buscaLogradouroNumeroCep(String logradouro, int numero, String cep);
+
 }

@@ -51,5 +51,8 @@ public interface AnimalRepository extends CrudRepository<Animal, Long> {
 
 	@Query("select a from Animal a where a.observacao like %?1%")
 	public List<Animal> buscaObservacao(String observacao);
+	
+	@Query("select a from Animal a where a.tipo = %?1% and a.raca = %?2% and a.nome = %?3% and a.registro = %?4%")
+	public Animal buscaAnimal(String tipo, String raca, String nome, String registro);
 
 }

@@ -4,8 +4,8 @@ import br.com.sabcolinas.cadastro.model.Endereco;
 
 public interface EnderecoService {
 
-	public Endereco createEndereco(String logradouro, int numero, String bairro, String cep, String cidade,
-			String estado);
+	public Endereco createEndereco(String logradouro, int numero, String codigo, String complemento, String bairro,
+			String cep, String cidade, String estado);
 
 	public void updateEnderecoLogradouro(String logradouroAntigo, String logradouroNovo);
 
@@ -22,9 +22,11 @@ public interface EnderecoService {
 	public void updateEnderecoCidade(String cidadeAntigo, String cidadeNovo);
 
 	public void updateEnderecoEstado(String estadoAntigo, String estadoNovo);
-	
+
 	public void deleteEnderecoCodigo(String codigo);
 
-	public void deleteEndereco(String logradouro, int numero, String cep);
+	public void deleteEnderecoLogradouroNumeroCep(String logradouro, int numero, String cep);
+
+	public void deleteEndereco(Long id);
 
 }

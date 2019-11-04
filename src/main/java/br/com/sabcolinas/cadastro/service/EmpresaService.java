@@ -4,7 +4,7 @@ import br.com.sabcolinas.cadastro.model.Empresa;
 
 public interface EmpresaService {
 
-	public Empresa createEmpresa(String cnpj, String razaoSocial);
+	public Empresa createEmpresa(String cnpj, String razaoSocial, String nomeFantasia, String logradouro, int numero, String cep);
 
 	public void updateEmpresaCnpj(String cnpjAntigo, String cnpjNovo);
 

@@ -4,7 +4,7 @@ import br.com.sabcolinas.cadastro.model.PrestadorServico;
 
 public interface PrestadorServicoService {
 
-	public PrestadorServico createPrestadorServico();
+	public PrestadorServico createPrestadorServico(String cpf, String cnpj);
 
 	public void deletePrestadorServico(Long id);
 }

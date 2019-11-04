@@ -1,5 +1,7 @@
 package br.com.sabcolinas.cadastro.service;
 
+import java.util.Optional;
+
 import br.com.sabcolinas.cadastro.model.Animal;
 
 public interface AnimalService {
@@ -15,9 +17,9 @@ public interface AnimalService {
 	public void updateAnimalRegistro(String registroAntigo, String registroNovo);
 
 	public void updateAnimalObs(String observacaoAntigo, String observacaoNovo);
-	
+
 	public void deleteAnimalRegistro(String registro);
 
-	public void deleteAnimal(Long id);
+	public Optional<Animal> deleteAnimal(Long id);
 
 }

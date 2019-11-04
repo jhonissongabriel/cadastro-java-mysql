@@ -37,5 +37,8 @@ public interface RecadoRepository extends CrudRepository<Recado, Long> {
 
 	@Query("select r from Recado r where r.telefone like %?1%")
 	public List<Recado> buscaTelefone(String telefone);
+	
+	@Query("select r from Recado r where r.nome = %?1% and r.parentesco = %?2% and r.telefone = %?3%")
+	public Recado buscaRecado(String nome, String parentesco, String telefone);
 
 }

@@ -6,7 +6,8 @@ import br.com.sabcolinas.cadastro.model.Pessoa;
 
 public interface PessoaService {
 
-	public Pessoa createPessoa(String nome, Date dataNasc, String cpf, String rg, String docEmissor);
+	public Pessoa createPessoa(String nome, Date dataNasc, String cpf, String rg, String docEmissor, Date acessoInicio,
+			Date acessoTermino);
 
 	public void updatePessoaNome(String nomeAntigo, String nomeNovo);
 
@@ -21,5 +22,7 @@ public interface PessoaService {
 	public void deletePessoaCpf(String cpf);
 
 	public void deletePessoaRg(String rg);
+
+	public void deletePessoa(Long id);
 
 }

@@ -37,5 +37,8 @@ public interface TrabalhoRepository extends CrudRepository<Trabalho, Long> {
 
 	@Query("select t from Trabalho t where t.telefone like %?1%")
 	public List<Trabalho> buscaTelefone(String telefone);
+	
+	@Query("select t from Trabalho t where t.empresa = %?1% and t.profissao = %?2% ")
+	public Trabalho buscaEmpresaProfissao(String empresa, String profissao); 
 
 }

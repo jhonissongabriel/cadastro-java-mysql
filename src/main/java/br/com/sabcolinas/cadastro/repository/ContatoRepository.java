@@ -37,5 +37,8 @@ public interface ContatoRepository extends CrudRepository<Contato, Long> {
 
 	@Query("select c from Contato c where c.email like %?1%")
 	public List<Contato> buscaEmail(String email);
+	
+	@Query("select c from Contato c where c.telefone1 = %?1% and c.telefone2 = %?2% and c.email = %?3%")
+	public Contato buscaTelefone1Telefone2Email(String telefone1, String telefone2, String email);
 
 }

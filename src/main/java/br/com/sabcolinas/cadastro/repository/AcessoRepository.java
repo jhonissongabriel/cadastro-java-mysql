@@ -25,5 +25,8 @@ public interface AcessoRepository extends CrudRepository<Acesso, Long> {
 
 	@Query("select a from Acesso a where a.dataTermino like %?1%")
 	public List<Acesso> buscaDataTermino(Date dataTermino);
+	
+	@Query("select a from Acesso a where a.dataInicio = %?1% and a.dataTermino = %?2%")
+	public Acesso buscaDataInicioTermino(Date dataInicio, Date dataTermino);
 
 }
