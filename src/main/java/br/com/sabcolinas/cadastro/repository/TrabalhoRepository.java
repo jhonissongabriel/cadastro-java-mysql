@@ -21,11 +21,11 @@ public interface TrabalhoRepository extends CrudRepository<Trabalho, Long> {
 
 	// Find Contains
 
-	public Trabalho findByEmpresaContains(String empresa);
+	public List<Trabalho> findByEmpresaContains(String empresa);
 
-	public Trabalho findByProfissaoContains(String profissao);
+	public List<Trabalho> findByProfissaoContains(String profissao);
 
-	public Trabalho findByTelefoneContains(String telefone);
+	public List<Trabalho> findByTelefoneContains(String telefone);
 
 	// Query
 

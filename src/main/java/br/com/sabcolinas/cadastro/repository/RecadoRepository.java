@@ -21,11 +21,11 @@ public interface RecadoRepository extends CrudRepository<Recado, Long> {
 
 	// Find Contains
 
-	public Recado findByNomeContains(String nome);
+	public List<Recado> findByNomeContains(String nome);
 
-	public Recado findByParentescoContains(String parentesco);
+	public List<Recado> findByParentescoContains(String parentesco);
 
-	public Recado findByTelefoneContains(String telefone);
+	public List<Recado> findByTelefoneContains(String telefone);
 
 	// Query
 

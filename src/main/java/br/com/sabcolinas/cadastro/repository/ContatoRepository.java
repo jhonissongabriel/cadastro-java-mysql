@@ -21,11 +21,11 @@ public interface ContatoRepository extends CrudRepository<Contato, Long> {
 
 	// Find Contains
 
-	public Contato findByTelefone1Contains(String telefone1);
+	public List<Contato> findByTelefone1Contains(String telefone1);
 
-	public Contato findByTelefone2Contains(String telefone2);
+	public List<Contato> findByTelefone2Contains(String telefone2);
 
-	public Contato findByEmailContains(String email);
+	public List<Contato> findByEmailContains(String email);
 
 	// Query
 

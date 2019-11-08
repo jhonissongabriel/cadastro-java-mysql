@@ -27,17 +27,17 @@ public interface VeiculoRepository extends CrudRepository<Veiculo, Long> {
 
 	// Find Contains
 
-	public Veiculo findByTipoContains(String tipo);
+	public List<Veiculo> findByTipoContains(String tipo);
 
-	public Veiculo findByMarcaContains(String marca);
+	public List<Veiculo> findByMarcaContains(String marca);
 
-	public Veiculo findByModeloContains(String modelo);
+	public List<Veiculo> findByModeloContains(String modelo);
 
-	public Veiculo findByCorContains(String cor);
+	public List<Veiculo> findByCorContains(String cor);
 
-	public Veiculo findByPlacaContains(String placa);
+	public List<Veiculo> findByPlacaContains(String placa);
 
-	public Veiculo findByObservacaoContains(String observacao);
+	public List<Veiculo> findByObservacaoContains(String observacao);
 
 	// Query
 

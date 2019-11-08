@@ -8,23 +8,19 @@ import br.com.sabcolinas.cadastro.model.Empresa;
 import br.com.sabcolinas.cadastro.model.Pessoa;
 import br.com.sabcolinas.cadastro.model.PrestadorServico;
 import br.com.sabcolinas.cadastro.repository.EmpresaRepository;
-import br.com.sabcolinas.cadastro.repository.FuncionarioRepository;
 import br.com.sabcolinas.cadastro.repository.PessoaRepository;
 import br.com.sabcolinas.cadastro.repository.PrestadorServicoRepository;
 import br.com.sabcolinas.cadastro.service.PrestadorServicoService;
 
 @Service("prestadorServicoService")
-public class PrestadorServicoServiceImpl implements PrestadorServicoService{
-	
+public class PrestadorServicoServiceImpl implements PrestadorServicoService {
+
 	@Autowired
 	private PrestadorServicoRepository prestadorServicoRepo;
-	
+
 	@Autowired
 	private PessoaRepository pessoaRepo;
-	
-	@Autowired
-	private FuncionarioRepository funcionarioRepo;
-	
+
 	@Autowired
 	private EmpresaRepository empresaRepo;
 
@@ -36,10 +32,6 @@ public class PrestadorServicoServiceImpl implements PrestadorServicoService{
 		this.pessoaRepo = pessoaRepo;
 	}
 
-	public void setFuncionarioRepo(FuncionarioRepository funcionarioRepo) {
-		this.funcionarioRepo = funcionarioRepo;
-	}
-
 	public void setEmpresaRepo(EmpresaRepository empresaRepo) {
 		this.empresaRepo = empresaRepo;
 	}
@@ -48,13 +40,13 @@ public class PrestadorServicoServiceImpl implements PrestadorServicoService{
 	@Transactional
 	public PrestadorServico createPrestadorServico(String cpf, String cnpj) {
 		Pessoa pessoa = pessoaRepo.findByCpf(cpf);
-		
-		if(pessoa != null) {
+
+		if (pessoa != null) {
 			PrestadorServico prestadorServico = new PrestadorServico();
 			prestadorServico.setPessoa(pessoa);
 			Empresa empresa = empresaRepo.findByCnpj(cnpj);
-			
-			if(empresa != null) {
+
+			if (empresa != null) {
 				prestadorServico.setEmpresa(empresa);
 				prestadorServicoRepo.save(prestadorServico);
 				return prestadorServico;
@@ -70,7 +62,5 @@ public class PrestadorServicoServiceImpl implements PrestadorServicoService{
 	public void deletePrestadorServico(Long id) {
 		prestadorServicoRepo.deleteById(id);
 	}
-	
-	
 
 }

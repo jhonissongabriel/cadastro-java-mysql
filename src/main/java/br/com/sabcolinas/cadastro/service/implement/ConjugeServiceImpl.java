@@ -66,6 +66,19 @@ public class ConjugeServiceImpl implements ConjugeService {
 
 	@Override
 	@Transactional
+	public void deleteConjugeRg(String rgConjuge) {
+		Pessoa conj = pessoaRepo.buscaRg(rgConjuge);
+		Optional<Conjuge> conjugeOpt = conjugeRepo.findById(conj.getId());
+		Conjuge conjuge = (conjugeOpt.isPresent()) ? conjugeOpt.get() : null;
+
+		if (conjuge != null) {
+			conjugeRepo.delete(conjuge);
+		}
+
+	}
+
+	@Override
+	@Transactional
 	public void deleteConjuge(Long id) {
 		conjugeRepo.deleteById(id);
 

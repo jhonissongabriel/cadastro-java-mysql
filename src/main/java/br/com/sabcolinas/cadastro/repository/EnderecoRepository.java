@@ -31,21 +31,21 @@ public interface EnderecoRepository extends CrudRepository<Endereco, Long> {
 
 	// Find Contains
 
-	public Endereco findByLogradouroContains(String logradouro);
+	public List<Endereco> findByLogradouroContains(String logradouro);
 
-	public Endereco findByNumeroContains(int numero);
+	public List<Endereco> findByNumeroContains(int numero);
 
-	public Endereco findByCodigoContains(String codigo);
+	public List<Endereco> findByCodigoContains(String codigo);
 
-	public Endereco findByComplementoContains(String complemento);
+	public List<Endereco> findByComplementoContains(String complemento);
 
-	public Endereco findByBairroContains(String bairro);
+	public List<Endereco> findByBairroContains(String bairro);
 
-	public Endereco findByCepContains(String cep);
+	public List<Endereco> findByCepContains(String cep);
 
-	public Endereco findByCidadeContains(String cidade);
+	public List<Endereco> findByCidadeContains(String cidade);
 
-	public Endereco findByEstadoContains(String estado);
+	public List<Endereco> findByEstadoContains(String estado);
 
 	// Query
 

@@ -26,13 +26,13 @@ public interface PessoaRepository extends CrudRepository<Pessoa, Long> {
 
 	// Find Contains
 
-	public Pessoa findByNomeContains(String nome);
+	public List<Pessoa> findByNomeContains(String nome);
 
-	public Pessoa findByCpfContains(String cpf);
+	public List<Pessoa> findByCpfContains(String cpf);
 
-	public Pessoa findByRgContains(String rg);
+	public List<Pessoa> findByRgContains(String rg);
 
-	public Pessoa findByDocEmissorContains(String docEmissor);
+	public List<Pessoa> findByDocEmissorContains(String docEmissor);
 
 	// Query
 

@@ -17,7 +17,7 @@ public interface ProprietarioRepository extends CrudRepository<Proprietario, Lon
 
 	// Find Contains
 
-	public Proprietario findByInformacoesContains(String informacoes);
+	public List<Proprietario> findByInformacoesContains(String informacoes);
 
 	// Query
 

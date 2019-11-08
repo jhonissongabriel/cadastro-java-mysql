@@ -8,7 +8,7 @@ public interface RecadoService {
 
 	public void updateRecadoNome(String nomeAntigo, String nomeNovo);
 
-	public void updateRecadoParentesco(String parentescoAntigo, String parentescoNovo);
+	public void updateRecadoParentesco(String nome, String parentescoNovo);
 
 	public void updateRecadoTelefone(String telefoneAntigo, String telefoneNovo);
 

@@ -25,15 +25,15 @@ public interface AnimalRepository extends CrudRepository<Animal, Long> {
 
 	// Find Contains
 
-	public Animal findByTipoContains(String tipo);
+	public List<Animal> findByTipoContains(String tipo);
 
-	public Animal findByRacaContains(String raca);
+	public List<Animal> findByRacaContains(String raca);
 
-	public Animal findByNomeContains(String nome);
+	public List<Animal> findByNomeContains(String nome);
 
-	public Animal findByRegistroContains(String registro);
+	public List<Animal> findByRegistroContains(String registro);
 
-	public Animal findByObservacaoContains(String observacao);
+	public List<Animal> findByObservacaoContains(String observacao);
 
 	// Query
 

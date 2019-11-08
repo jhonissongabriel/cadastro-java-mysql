@@ -11,9 +11,9 @@ public interface ProprietarioService {
 			String parentescoRecado, String telefoneRecado, String placa, String tipo, String raca, String nome,
 			String registroAnimal, Blob foto, String informacoes);
 
-	public void updateProprietarioFoto(Blob fotoAntigo, Blob fotoNovo);
+	public void updateProprietarioFoto(String rg, Blob fotoNovo);
 
-	public void updateProprietarioInformacoes(String informacoesAntigo, String informacoesNovo);
+	public void updateProprietarioInformacoes(String rg, String informacoesNovo);
 
-	public void deleteProprietario(Long id);
+	public void deleteProprietarioRg(String rg);
 }

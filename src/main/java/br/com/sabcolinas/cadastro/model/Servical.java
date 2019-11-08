@@ -12,25 +12,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "serv_servical")
 public class Servical {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id_serv")
-	//@JsonView({View.ServicalAvancado.class})
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_serv")
+	// @JsonView({View.ServicalAvancado.class})
 	private Long id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "pess_id")
-	//@JsonView({View.ServicalAvancado.class})
+	// @JsonView({View.ServicalAvancado.class})
 	private Pessoa pessoa;
-	
-	@ManyToOne
-	@JoinColumn(name = "func_id")
-	//@JsonView({View.ServicalAvancado.class})
-	private Funcionario funcionario;
-	
-	
-	//GETTERS E SETTERS
+
+	// GETTERS E SETTERS
 
 	public Long getId() {
 		return id;
@@ -47,15 +41,5 @@ public class Servical {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
-	
-	
 
 }

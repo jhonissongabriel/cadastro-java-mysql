@@ -21,11 +21,11 @@ public interface EmpresaRepository extends CrudRepository<Empresa, Long> {
 
 	// Find Contains
 
-	public Empresa findByCnpjContains(String cnpj);
+	public List<Empresa> findByCnpjContains(String cnpj);
 
-	public Empresa findByRazaoSocialContains(String razaoSocial);
+	public List<Empresa> findByRazaoSocialContains(String razaoSocial);
 
-	public Empresa findByNomeFantasiaContains(String nomeFantasia);
+	public List<Empresa> findByNomeFantasiaContains(String nomeFantasia);
 
 	// Query
 

@@ -12,29 +12,23 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "prse_prestador_servico")
 public class PrestadorServico {
-	
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id_prse")
-	//@JsonView({View.PrestadorServicoAvancado.class})
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_prse")
+	// @JsonView({View.PrestadorServicoAvancado.class})
 	private Long id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "pess_id")
-	//@JsonView({View.PrestadorServicoAvancado.class})
+	// @JsonView({View.PrestadorServicoAvancado.class})
 	private Pessoa pessoa;
-	
-	@ManyToOne
-	@JoinColumn(name = "func_id")
-	//@JsonView({View.PrestadorServicoAvancado.class})
-	private Funcionario funcionario;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "empr_id")
-	//@JsonView({View.PrestadorServicoAvancado.class})
+	// @JsonView({View.PrestadorServicoAvancado.class})
 	private Empresa empresa;
-	
+
 	// GETTERS E SETTERS
 
 	public Long getId() {
@@ -53,14 +47,6 @@ public class PrestadorServico {
 		this.pessoa = pessoa;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
-
 	public Empresa getEmpresa() {
 		return empresa;
 	}
@@ -68,6 +54,5 @@ public class PrestadorServico {
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
-	
-	
+
 }

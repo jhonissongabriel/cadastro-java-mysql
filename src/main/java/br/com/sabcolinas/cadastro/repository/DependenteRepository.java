@@ -19,7 +19,7 @@ public interface DependenteRepository extends CrudRepository<Dependente, Long> {
 
 	// Find Contains
 
-	public Dependente findByParentescoContains(String parentesco);
+	public List<Dependente> findByParentescoContains(String parentesco);
 
 	// Query
 

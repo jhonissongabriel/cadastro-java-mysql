@@ -22,7 +22,6 @@ import br.com.sabcolinas.cadastro.repository.ConjugeRepository;
 import br.com.sabcolinas.cadastro.repository.ContatoRepository;
 import br.com.sabcolinas.cadastro.repository.DependenteRepository;
 import br.com.sabcolinas.cadastro.repository.EnderecoRepository;
-import br.com.sabcolinas.cadastro.repository.FuncionarioRepository;
 import br.com.sabcolinas.cadastro.repository.PessoaRepository;
 import br.com.sabcolinas.cadastro.repository.ProprietarioRepository;
 import br.com.sabcolinas.cadastro.repository.RecadoRepository;
@@ -47,9 +46,6 @@ public class ProprietarioServiceImpl implements ProprietarioService {
 
 	@Autowired
 	private DependenteRepository dependenteRepo;
-
-	@Autowired
-	private FuncionarioRepository funcionarioRepo;
 
 	@Autowired
 	private EnderecoRepository enderecoRepo;
@@ -86,10 +82,6 @@ public class ProprietarioServiceImpl implements ProprietarioService {
 		this.dependenteRepo = dependenteRepo;
 	}
 
-	public void setFuncionarioRepo(FuncionarioRepository funcionarioRepo) {
-		this.funcionarioRepo = funcionarioRepo;
-	}
-
 	public void setEnderecoRepo(EnderecoRepository enderecoRepo) {
 		this.enderecoRepo = enderecoRepo;
 	}
@@ -123,13 +115,15 @@ public class ProprietarioServiceImpl implements ProprietarioService {
 			Proprietario proprietario = new Proprietario();
 			proprietario.setPessoa(pessoa);
 			Trabalho trabalho = trabalhoRepo.buscaEmpresaProfissao(empresa, profissao);
-			
+
 			Pessoa conj = pessoaRepo.findByCpf(cpfConjuge);
-			Optional<Conjuge> conjuge = conjugeRepo.findById(conj.getId());
+			Optional<Conjuge> conjugeOpt = conjugeRepo.findById(conj.getId());
+			Conjuge conjuge = (conjugeOpt.isPresent()) ? conjugeOpt.get() : null;
 
 			Pessoa depe = pessoaRepo.buscaRg(rgDependente);
-			Optional<Dependente> dependente = dependenteRepo.findById(depe.getId());
-			
+			Optional<Dependente> dependenteOpt = dependenteRepo.findById(depe.getId());
+			Dependente dependente = (dependenteOpt.isPresent()) ? dependenteOpt.get() : null;
+
 			Endereco endereco = enderecoRepo.findByCodigo(codigo);
 			Contato contato = contatoRepo.buscaTelefone1Telefone2Email(telefone1, telefone2, email);
 			Recado recado = recadoRepo.buscaRecado(nomeRecado, parentescoRecado, telefoneRecado);
@@ -142,9 +136,26 @@ public class ProprietarioServiceImpl implements ProprietarioService {
 			if (conjuge != null) {
 				proprietario.setConjuge(conjuge);
 			}
-			if(dependente != null) {
+			if (dependente != null) {
 				proprietario.setDependente(dependente);
 			}
+			if (endereco != null) {
+				proprietario.setEndereco(endereco);
+			}
+			if (contato != null) {
+				proprietario.setContato(contato);
+			}
+			if (recado != null) {
+				proprietario.setRecado(recado);
+			}
+			if (veiculo != null) {
+				proprietario.setVeiculo(veiculo);
+			}
+			if (animal != null) {
+				proprietario.setAnimal(animal);
+			}
+			proprietarioRepo.save(proprietario);
+			return proprietario;
 		}
 
 		return null;
@@ -152,22 +163,44 @@ public class ProprietarioServiceImpl implements ProprietarioService {
 
 	@Override
 	@Transactional
-	public void updateProprietarioFoto(Blob fotoAntigo, Blob fotoNovo) {
-		// TODO Auto-generated method stub
+	public void updateProprietarioFoto(String rgProprietario, Blob fotoNovo) {
+
+		Pessoa prop = pessoaRepo.buscaRg(rgProprietario);
+		Optional<Proprietario> proprietarioOpt = proprietarioRepo.findById(prop.getId());
+		Proprietario proprietario = (proprietarioOpt.isPresent()) ? proprietarioOpt.get() : null;
+
+		if (proprietario != null) {
+			proprietario.setFoto(fotoNovo);
+			proprietarioRepo.save(proprietario);
+		}
 
 	}
 
 	@Override
 	@Transactional
-	public void updateProprietarioInformacoes(String informacoesAntigo, String informacoesNovo) {
-		// TODO Auto-generated method stub
+	public void updateProprietarioInformacoes(String rgProprietario, String informacoesNovo) {
+		Pessoa prop = pessoaRepo.buscaRg(rgProprietario);
+		Optional<Proprietario> proprietarioOpt = proprietarioRepo.findById(prop.getId());
+		Proprietario proprietario = (proprietarioOpt.isPresent()) ? proprietarioOpt.get() : null;
+
+		if (proprietario != null) {
+			proprietario.setInformacoes(informacoesNovo);
+			proprietarioRepo.save(proprietario);
+		}
 
 	}
 
 	@Override
 	@Transactional
-	public void deleteProprietario(Long id) {
-		// TODO Auto-generated method stub
+	public void deleteProprietarioRg(String rgProprietario) {
+
+		Pessoa prop = pessoaRepo.buscaRg(rgProprietario);
+		Optional<Proprietario> proprietarioOpt = proprietarioRepo.findById(prop.getId());
+		Proprietario proprietario = (proprietarioOpt.isPresent()) ? proprietarioOpt.get() : null;
+
+		if (proprietario != null) {
+			proprietarioRepo.delete(proprietario);
+		}
 
 	}
 

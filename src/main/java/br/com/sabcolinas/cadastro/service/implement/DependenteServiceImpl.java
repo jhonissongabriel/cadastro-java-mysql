@@ -33,8 +33,8 @@ public class DependenteServiceImpl implements DependenteService {
 	@Transactional
 	public Dependente createDependente(String rg, String parentesco) {
 		Pessoa pessoa = pessoaRepo.findByRg(rg);
-		
-		if(pessoa != null) {
+
+		if (pessoa != null) {
 			Dependente dependente = new Dependente();
 			dependente.setPessoa(pessoa);
 			dependente.setParentesco(parentesco);
@@ -48,8 +48,8 @@ public class DependenteServiceImpl implements DependenteService {
 	@Transactional
 	public void updateDependenteParentesco(String parentescoAntigo, String parentescoNovo) {
 		Dependente dependente = dependenteRepo.findByParentesco(parentescoAntigo);
-		
-		if(dependente != null) {
+
+		if (dependente != null) {
 			dependente.setParentesco(parentescoNovo);
 			dependenteRepo.save(dependente);
 		}
@@ -57,14 +57,22 @@ public class DependenteServiceImpl implements DependenteService {
 
 	@Override
 	@Transactional
-	public Optional<Dependente> deleteDependente(Long id) {
-		Optional<Dependente> dependente = dependenteRepo.findById(id);
-		
-		if(dependente != null) {
-			dependenteRepo.deleteById(id);
-			return dependente;
+	public void deleteDependenteRg(String rgDependente) {
+
+		Pessoa depe = pessoaRepo.buscaRg(rgDependente);
+		Optional<Dependente> dependenteOpt = dependenteRepo.findById(depe.getId());
+		Dependente dependente = (dependenteOpt.isPresent()) ? dependenteOpt.get() : null;
+
+		if (dependente != null) {
+			dependenteRepo.delete(dependente);
 		}
-		return null;
+
+	}
+
+	@Override
+	@Transactional
+	public void deleteDependente(Long id) {
+		dependenteRepo.deleteById(id);
 	}
 
 }

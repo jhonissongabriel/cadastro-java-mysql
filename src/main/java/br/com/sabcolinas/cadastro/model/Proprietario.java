@@ -14,74 +14,68 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "prop_propietario")
 public class Proprietario {
-	
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id_prop")
-	//@JsonView({View.ProprietarioAvancado.class})
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_prop")
+	// @JsonView({View.ProprietarioAvancado.class})
 	private Long id;
-	
+
 	@Column(name = "prop_foto")
-	//@JsonView({View.ProprietarioIntermediario.class})
+	// @JsonView({View.ProprietarioIntermediario.class})
 	private Blob foto;
-	
+
 	@Column(name = "prop_info", length = 400)
-	//@JsonView({View.ProprietarioBasico.class})
+	// @JsonView({View.ProprietarioBasico.class})
 	private String informacoes;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "pess_id")
-	//@JsonView({View.ProprietarioAvancado.class})
+	// @JsonView({View.ProprietarioAvancado.class})
 	private Pessoa pessoa;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "trab_id")
-	//@JsonView({View.ProprietarioAvancado.class})
+	// @JsonView({View.ProprietarioAvancado.class})
 	private Trabalho trabalho;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "conj_id")
-	//@JsonView({View.ProprietarioAvancado.class})
+	// @JsonView({View.ProprietarioAvancado.class})
 	private Conjuge conjuge;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "depe_id")
-	//@JsonView({View.ProprietarioAvancado.class})
+	// @JsonView({View.ProprietarioAvancado.class})
 	private Dependente dependente;
-	
-	@ManyToOne
-	@JoinColumn(name = "func_id")
-	//@JsonView({View.ProprietarioAvancado.class})
-	private Funcionario funcionario;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "ende_id")
-	//@JsonView({View.ProprietarioAvancado.class})
+	// @JsonView({View.ProprietarioAvancado.class})
 	private Endereco endereco;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "cont_id")
-	//@JsonView({View.ProprietarioAvancado.class})
+	// @JsonView({View.ProprietarioAvancado.class})
 	private Contato contato;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "reca_id")
-	//@JsonView({View.ProprietarioAvancado.class})
+	// @JsonView({View.ProprietarioAvancado.class})
 	private Recado recado;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "veic_id")
-	//@JsonView({View.ProprietarioAvancado.class})
+	// @JsonView({View.ProprietarioAvancado.class})
 	private Veiculo veiculo;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "anim_id")
-	//@JsonView({View.ProprietarioAvancado.class})
+	// @JsonView({View.ProprietarioAvancado.class})
 	private Animal animal;
 
 	// GETTERS E SETTERS
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -138,14 +132,6 @@ public class Proprietario {
 		this.dependente = dependente;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
-
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -185,7 +171,5 @@ public class Proprietario {
 	public void setAnimal(Animal animal) {
 		this.animal = animal;
 	}
-	
-	
 
 }
