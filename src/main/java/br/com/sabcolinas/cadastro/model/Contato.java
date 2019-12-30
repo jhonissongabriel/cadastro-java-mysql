@@ -7,6 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.com.sabcolinas.cadastro.view.View;
+
 @Entity
 @Table(name = "cont_contato")
 public class Contato {
@@ -14,19 +18,19 @@ public class Contato {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cont")
-	// @JsonView({View.ContatoAvancado.class})
+	@JsonView({View.Avancado.class})
 	private Long id;
 
 	@Column(name = "cont_telefone_1", length = 11, nullable = false)
-	// @JsonView({View.ContatoIntermediario.class})
+	@JsonView({View.Basico.class})
 	private String telefone1;
 
 	@Column(name = "cont_telefone_2", length = 11)
-	// @JsonView({View.ContatoIntermediario.class})
+	@JsonView({View.Basico.class})
 	private String telefone2;
 
 	@Column(name = "cont_email", length = 50)
-	// @JsonView({View.ContatoIntermediario.class})
+	@JsonView({View.Basico.class})
 	private String email;
 
 	// GETTERS E SETTERS

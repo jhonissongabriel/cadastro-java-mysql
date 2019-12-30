@@ -11,6 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.com.sabcolinas.cadastro.view.View;
+
 @Entity
 @Table(name = "prop_propietario")
 public class Proprietario {
@@ -18,61 +22,21 @@ public class Proprietario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_prop")
-	// @JsonView({View.ProprietarioAvancado.class})
+	@JsonView({View.Avancado.class})
 	private Long id;
 
+	@Column(name = "prop_especial", nullable = false)
+	@JsonView({View.Basico.class})
+	private boolean especial;
+
 	@Column(name = "prop_foto")
-	// @JsonView({View.ProprietarioIntermediario.class})
+	@JsonView({View.Basico.class})
 	private Blob foto;
 
-	@Column(name = "prop_info", length = 400)
-	// @JsonView({View.ProprietarioBasico.class})
-	private String informacoes;
-
 	@ManyToOne
-	@JoinColumn(name = "pess_id")
-	// @JsonView({View.ProprietarioAvancado.class})
+	@JoinColumn(name = "pess_id", nullable = false)
+	@JsonView({View.Avancado.class})
 	private Pessoa pessoa;
-
-	@ManyToOne
-	@JoinColumn(name = "trab_id")
-	// @JsonView({View.ProprietarioAvancado.class})
-	private Trabalho trabalho;
-
-	@ManyToOne
-	@JoinColumn(name = "conj_id")
-	// @JsonView({View.ProprietarioAvancado.class})
-	private Conjuge conjuge;
-
-	@ManyToOne
-	@JoinColumn(name = "depe_id")
-	// @JsonView({View.ProprietarioAvancado.class})
-	private Dependente dependente;
-
-	@ManyToOne
-	@JoinColumn(name = "ende_id")
-	// @JsonView({View.ProprietarioAvancado.class})
-	private Endereco endereco;
-
-	@ManyToOne
-	@JoinColumn(name = "cont_id")
-	// @JsonView({View.ProprietarioAvancado.class})
-	private Contato contato;
-
-	@ManyToOne
-	@JoinColumn(name = "reca_id")
-	// @JsonView({View.ProprietarioAvancado.class})
-	private Recado recado;
-
-	@ManyToOne
-	@JoinColumn(name = "veic_id")
-	// @JsonView({View.ProprietarioAvancado.class})
-	private Veiculo veiculo;
-
-	@ManyToOne
-	@JoinColumn(name = "anim_id")
-	// @JsonView({View.ProprietarioAvancado.class})
-	private Animal animal;
 
 	// GETTERS E SETTERS
 
@@ -92,14 +56,6 @@ public class Proprietario {
 		this.foto = foto;
 	}
 
-	public String getInformacoes() {
-		return informacoes;
-	}
-
-	public void setInformacoes(String informacoes) {
-		this.informacoes = informacoes;
-	}
-
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
@@ -108,68 +64,14 @@ public class Proprietario {
 		this.pessoa = pessoa;
 	}
 
-	public Trabalho getTrabalho() {
-		return trabalho;
+	public boolean isEspecial() {
+		return especial;
 	}
 
-	public void setTrabalho(Trabalho trabalho) {
-		this.trabalho = trabalho;
+	public void setEspecial(boolean especial) {
+		this.especial = especial;
 	}
-
-	public Conjuge getConjuge() {
-		return conjuge;
-	}
-
-	public void setConjuge(Conjuge conjuge) {
-		this.conjuge = conjuge;
-	}
-
-	public Dependente getDependente() {
-		return dependente;
-	}
-
-	public void setDependente(Dependente dependente) {
-		this.dependente = dependente;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public Contato getContato() {
-		return contato;
-	}
-
-	public void setContato(Contato contato) {
-		this.contato = contato;
-	}
-
-	public Recado getRecado() {
-		return recado;
-	}
-
-	public void setRecado(Recado recado) {
-		this.recado = recado;
-	}
-
-	public Veiculo getVeiculo() {
-		return veiculo;
-	}
-
-	public void setVeiculo(Veiculo veiculo) {
-		this.veiculo = veiculo;
-	}
-
-	public Animal getAnimal() {
-		return animal;
-	}
-
-	public void setAnimal(Animal animal) {
-		this.animal = animal;
-	}
+	
+	
 
 }

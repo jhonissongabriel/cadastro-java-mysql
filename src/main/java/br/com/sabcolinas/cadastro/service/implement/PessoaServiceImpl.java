@@ -1,65 +1,41 @@
 package br.com.sabcolinas.cadastro.service.implement;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sabcolinas.cadastro.model.Acesso;
 import br.com.sabcolinas.cadastro.model.Pessoa;
-import br.com.sabcolinas.cadastro.repository.AcessoRepository;
 import br.com.sabcolinas.cadastro.repository.PessoaRepository;
 import br.com.sabcolinas.cadastro.service.PessoaService;
 
 @Service("pessoaService")
+@Transactional
 public class PessoaServiceImpl implements PessoaService {
 
 	@Autowired
 	private PessoaRepository pessoaRepo;
 
-	@Autowired
-	private AcessoRepository acessoRepo;
-
 	public void setPessoaRepo(PessoaRepository pessoaRepo) {
 		this.pessoaRepo = pessoaRepo;
 	}
 
-	public void setAcessoRepo(AcessoRepository acessoRepo) {
-		this.acessoRepo = acessoRepo;
+	@Override
+	public Pessoa create(Pessoa pessoa) {
+		return pessoaRepo.save(pessoa);
 	}
 
 	@Override
-	@Transactional
-	public Pessoa createPessoa(String nome, Date dataNasc, String cpf, String rg, String docEmissor, Date acessoInicio,
-			Date acessoTermino) {
-		Pessoa pessoa = pessoaRepo.findByCpf(cpf);
-
-		if (pessoa == null) {
-			Acesso acesso = acessoRepo.buscaDataInicioTermino(acessoInicio, acessoTermino);
-			pessoa = new Pessoa();
-			pessoa.setNome(nome);
-			pessoa.setDataNasc(dataNasc);
-			pessoa.setCpf(cpf);
-			pessoa.setRg(rg);
-			pessoa.setDocEmissor(docEmissor);
-			
-			if (acesso != null) {
-				pessoa.setAcesso(acesso);
-				pessoaRepo.save(pessoa);
-				return pessoa;
-			}
-			pessoaRepo.save(pessoa);
-			return pessoa;
-		}
-		return null;
+	public void delete(Long id) {
+		pessoaRepo.deleteById(id);
 	}
 
 	@Override
-	@Transactional
-	public void updatePessoaNome(String nomeAntigo, String nomeNovo) {
+	public void updateNome(String nomeAntigo, String nomeNovo) {
 		Pessoa pessoa = pessoaRepo.findByNome(nomeAntigo);
-
 		if (pessoa != null) {
 			pessoa.setNome(nomeNovo);
 			pessoaRepo.save(pessoa);
@@ -67,21 +43,8 @@ public class PessoaServiceImpl implements PessoaService {
 	}
 
 	@Override
-	@Transactional
-	public void updatePessoaDataNasc(Date dataNascAntigo, Date dataNascNovo) {
-		Pessoa pessoa = pessoaRepo.findByDataNasc(dataNascAntigo);
-
-		if (pessoa != null) {
-			pessoa.setDataNasc(dataNascNovo);
-			pessoaRepo.save(pessoa);
-		}
-	}
-
-	@Override
-	@Transactional
-	public void updatePessoaCpf(String cpfAntigo, String cpfNovo) {
+	public void updateCpf(String cpfAntigo, String cpfNovo) {
 		Pessoa pessoa = pessoaRepo.findByCpf(cpfAntigo);
-
 		if (pessoa != null) {
 			pessoa.setCpf(cpfNovo);
 			pessoaRepo.save(pessoa);
@@ -89,10 +52,8 @@ public class PessoaServiceImpl implements PessoaService {
 	}
 
 	@Override
-	@Transactional
-	public void updatePessoaRg(String rgAntigo, String rgNovo) {
+	public void updateRg(String rgAntigo, String rgNovo) {
 		Pessoa pessoa = pessoaRepo.findByRg(rgAntigo);
-
 		if (pessoa != null) {
 			pessoa.setRg(rgNovo);
 			pessoaRepo.save(pessoa);
@@ -100,40 +61,66 @@ public class PessoaServiceImpl implements PessoaService {
 	}
 
 	@Override
-	@Transactional
-	public void updatePessoaDocEmissor(String docEmissorAntigo, String docEmissorNovo) {
-		Pessoa pessoa = pessoaRepo.findByDocEmissor(docEmissorAntigo);
-
+	public void updateDataNasc(String dataNascAntigo, String dataNascNovo) {
+		Pessoa pessoa = pessoaRepo.findByDataNasc(dataNascAntigo);
 		if (pessoa != null) {
-			pessoa.setDocEmissor(docEmissorNovo);
+			pessoa.setDataNasc(dataNascNovo);
 			pessoaRepo.save(pessoa);
 		}
 	}
 
 	@Override
-	@Transactional
-	public void deletePessoaCpf(String cpf) {
-		Pessoa pessoa = pessoaRepo.findByCpf(cpf);
-
-		if (pessoa != null) {
-			pessoaRepo.delete(pessoa);
+	public List<Pessoa> todos() {
+		List<Pessoa> retorno = new ArrayList<Pessoa>();
+		for (Pessoa pessoa : pessoaRepo.findAll()) {
+			retorno.add(pessoa);
 		}
+		return retorno;
 	}
 
 	@Override
-	@Transactional
-	public void deletePessoaRg(String rg) {
-		Pessoa pessoa = pessoaRepo.findByRg(rg);
-
-		if (pessoa != null) {
-			pessoaRepo.delete(pessoa);
+	public Pessoa buscarId(Long id) {
+		Optional<Pessoa> pessoa = pessoaRepo.findById(id);
+		if (pessoa.isPresent()) {
+			return pessoa.get();
 		}
+		return null;
 	}
 
 	@Override
-	@Transactional
-	public void deletePessoa(Long id) {
-		pessoaRepo.deleteById(id);
+	public List<Pessoa> buscarNome(String nome) {
+		List<Pessoa> retorno = new ArrayList<Pessoa>();
+		for (Pessoa pessoa : pessoaRepo.findByNomeContains(nome)) {
+			retorno.add(pessoa);
+		}
+		return retorno;
+	}
+
+	@Override
+	public List<Pessoa> buscarCpf(String cpf) {
+		List<Pessoa> retorno = new ArrayList<Pessoa>();
+		for (Pessoa pessoa : pessoaRepo.findByCpfContains(cpf)) {
+			retorno.add(pessoa);
+		}
+		return retorno;
+	}
+
+	@Override
+	public List<Pessoa> buscarRg(String rg) {
+		List<Pessoa> retorno = new ArrayList<Pessoa>();
+		for (Pessoa pessoa : pessoaRepo.findByRgContains(rg)) {
+			retorno.add(pessoa);
+		}
+		return retorno;
+	}
+
+	@Override
+	public List<Pessoa> buscarDataNasc(String dataNasc) {
+		List<Pessoa> retorno = new ArrayList<Pessoa>();
+		for (Pessoa pessoa : pessoaRepo.findByDataNascContains(dataNasc)) {
+			retorno.add(pessoa);
+		}
+		return retorno;
 	}
 
 }

@@ -1,9 +1,7 @@
 package br.com.sabcolinas.cadastro.repository;
 
-import java.util.Date;
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import br.com.sabcolinas.cadastro.model.Pessoa;
@@ -14,17 +12,13 @@ public interface PessoaRepository extends CrudRepository<Pessoa, Long> {
 
 	public Pessoa findByNome(String nome);
 
-	public Pessoa findByDataNasc(Date dataNasc);
+	public Pessoa findByDataNasc(String dataNasc);
 
 	public Pessoa findByCpf(String cpf);
 
 	public Pessoa findByRg(String rg);
 
-	public Pessoa findByDocEmissor(String docEmissor);
-
 	public List<Pessoa> findAll();
-
-	// Find Contains
 
 	public List<Pessoa> findByNomeContains(String nome);
 
@@ -32,20 +26,6 @@ public interface PessoaRepository extends CrudRepository<Pessoa, Long> {
 
 	public List<Pessoa> findByRgContains(String rg);
 
-	public List<Pessoa> findByDocEmissorContains(String docEmissor);
-
-	// Query
-
-	@Query("select p from Pessoa p where p.nome like %?1%")
-	public List<Pessoa> buscaNome(String nome);
-
-	@Query("select p from Pessoa p where p.cpf = ?1")
-	public List<Pessoa> buscaCpf(String cpf);
-
-	@Query("select p from Pessoa p where p.rg = ?1")
-	public Pessoa buscaRg(String rg);
-
-	@Query("select p from Pessoa p where p.docEmissor like %?1%")
-	public List<Pessoa> buscaDocEmissor(String docEmissor);
+	public List<Pessoa> findByDataNascContains(String dataNasc);
 
 }

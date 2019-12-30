@@ -1,16 +1,27 @@
 package br.com.sabcolinas.cadastro.service;
 
+import java.util.List;
+
 import br.com.sabcolinas.cadastro.model.Recado;
 
 public interface RecadoService {
 
-	public Recado createRecado(String nome, String parentesco, String telefone);
+	public Recado create(Recado recado);
 
-	public void updateRecadoNome(String nomeAntigo, String nomeNovo);
+	public void delete(Long id);
 
-	public void updateRecadoParentesco(String nome, String parentescoNovo);
+	public void updateNome(String nomeAntigo, String nomeNovo);
 
-	public void updateRecadoTelefone(String telefoneAntigo, String telefoneNovo);
+	public void updateTelefone1(String telefone1Antigo, String telefone1Novo);
 
-	public void deleteRecado(Long id);
+	public void updateTelefone2(String telefone2Antigo, String telefone2Novo);
+
+	public List<Recado> todos();
+
+	public Recado buscarId(Long id);
+
+	public List<Recado> buscarNome(String nome);
+
+	public List<Recado> buscarTelefone(String telefone);
+
 }

@@ -1,19 +1,20 @@
 package br.com.sabcolinas.cadastro.service;
 
-import java.sql.Blob;
+import java.util.List;
 
 import br.com.sabcolinas.cadastro.model.Proprietario;
 
 public interface ProprietarioService {
 
-	public Proprietario createProprietario(String cpf, String empresa, String profissao, String cpfConjuge,
-			String rgDependente, String codigo, String telefone1, String telefone2, String email, String nomeRecado,
-			String parentescoRecado, String telefoneRecado, String placa, String tipo, String raca, String nome,
-			String registroAnimal, Blob foto, String informacoes);
+	public Proprietario create(Proprietario proprietario);
 
-	public void updateProprietarioFoto(String rg, Blob fotoNovo);
+	public void delete(Long id);
 
-	public void updateProprietarioInformacoes(String rg, String informacoesNovo);
+	public void updateEspecial(boolean especialAntigo, boolean especialNovo);
 
-	public void deleteProprietarioRg(String rg);
+	public List<Proprietario> todos();
+
+	public Proprietario buscarId(Long id);
+
+	public List<Proprietario> buscarEspecial(boolean especial);
 }

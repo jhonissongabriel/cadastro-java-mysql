@@ -1,54 +1,44 @@
 package br.com.sabcolinas.cadastro.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.com.sabcolinas.cadastro.view.View;
 
 @Entity
 @Table(name = "pess_pessoa")
 public class Pessoa {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id_pess")
-	//@JsonView({View.PessoaAvancado.class})
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_pess")
+	@JsonView({View.Avancado.class})
 	private Long id;
 
 	@Column(name = "pess_nome", length = 100, nullable = false)
-	//@JsonView({View.PessoaBasico.class})
+	@JsonView({View.Basico.class})
 	private String nome;
-	
-	@Column(name = "pess_data_nasc", nullable = false)
-	//@JsonView({View.PessoaIntermediario.class})
-	private Date dataNasc;
-	
-	@Column(name = "pess_cpf", length = 11, unique = true, nullable = false)
-	//@JsonView({View.PessoaIntermediario.class})
-	private String cpf;
-	
-	@Column(name = "pess_rg", length = 10, unique = true, nullable = false)
-	//@JsonView({View.PessoaIntermediario.class})
-	private String rg;
-	
-	@Column(name = "pess_emissor", length = 50, nullable = false)
-	//@JsonView({View.PessoaIntermediario.class})
-	private String docEmissor;
-	
-	@ManyToOne
-	@JoinColumn(name = "aces_id")
-	//@JsonView({View.PessoaAvancado.class})
-	private Acesso acesso;
 
-	
+	@Column(name = "pess_data_nasc", length = 10, nullable = false)
+	@JsonView({View.Basico.class})
+	private String dataNasc;
+
+	@Column(name = "pess_cpf", length = 11, unique = true, nullable = false)
+	@JsonView({View.Basico.class})
+	private String cpf;
+
+	@Column(name = "pess_rg", length = 10, unique = true, nullable = false)
+	@JsonView({View.Basico.class})
+	private String rg;
+
 	// GETTERS E SETTERS
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -65,11 +55,11 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	public Date getDataNasc() {
+	public String getDataNasc() {
 		return dataNasc;
 	}
 
-	public void setDataNasc(Date dataNasc) {
+	public void setDataNasc(String dataNasc) {
 		this.dataNasc = dataNasc;
 	}
 
@@ -87,22 +77,6 @@ public class Pessoa {
 
 	public void setRg(String rg) {
 		this.rg = rg;
-	}
-
-	public String getDocEmissor() {
-		return docEmissor;
-	}
-
-	public void setDocEmissor(String docEmissor) {
-		this.docEmissor = docEmissor;
-	}
-
-	public Acesso getAcesso() {
-		return acesso;
-	}
-
-	public void setAcesso(Acesso acesso) {
-		this.acesso = acesso;
 	}
 
 }

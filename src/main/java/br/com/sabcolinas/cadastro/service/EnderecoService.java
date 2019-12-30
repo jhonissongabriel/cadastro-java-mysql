@@ -1,32 +1,33 @@
 package br.com.sabcolinas.cadastro.service;
 
+import java.util.List;
+
 import br.com.sabcolinas.cadastro.model.Endereco;
 
 public interface EnderecoService {
 
-	public Endereco createEndereco(String logradouro, int numero, String codigo, String complemento, String bairro,
-			String cep, String cidade, String estado);
+	public Endereco create(Endereco endereco);
 
-	public void updateEnderecoLogradouro(String logradouroAntigo, String logradouroNovo);
+	public void delete(Long id);
 
-	public void updateEnderecoNumero(int numeroAntigo, int numeroNovo);
+	public void updateRua(String ruaAntigo, String ruaNovo);
 
-	public void updateEnderecoCodigo(String codigoAntigo, String codigoNovo);
+	public void updateNumero(int numeroAntigo, int numeroNovo);
 
-	public void updateEnderecoComplemento(String complementoAntigo, String complementoNovo);
+	public void updateCodigo(String codigoAntigo, String codigoNovo);
 
-	public void updateEnderecoBairro(String bairroAntigo, String bairroNovo);
+	public void updateCep(String cepAntigo, String cepNovo);
 
-	public void updateEnderecoCep(String cepAntigo, String cepNovo);
+	public List<Endereco> todos();
 
-	public void updateEnderecoCidade(String cidadeAntigo, String cidadeNovo);
+	public Endereco buscarId(Long id);
 
-	public void updateEnderecoEstado(String estadoAntigo, String estadoNovo);
+	public List<Endereco> buscarRua(String rua);
 
-	public void deleteEnderecoCodigo(String codigo);
+	public List<Endereco> buscarNumero(int numero);
 
-	public void deleteEnderecoLogradouroNumeroCep(String logradouro, int numero, String cep);
+	public List<Endereco> buscarCodigo(String codigo);
 
-	public void deleteEndereco(Long id);
+	public List<Endereco> buscarCep(String cep);
 
 }

@@ -7,31 +7,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.com.sabcolinas.cadastro.view.View;
+
 @Entity
 @Table(name = "reca_recado")
 public class Recado {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id_reca")
-	//@JsonView({View.RecadoAvancado.class})
-	private Long id;
-	
-	@Column(name = "reca_nome", length = 50, nullable = false)
-	//@JsonView({View.RecadoBasico.class})
-	private String nome;
-	
-	@Column(name = "reca_parentesco", length = 50, nullable = false)
-	//@JsonView({View.RecadoBasico.class})
-	private String parentesco;
-	
-	@Column(name = "reca_parentesco", length = 11, nullable = false)
-	//@JsonView({View.RecadoBasico.class})
-	private String telefone;
-	
-	
-	//GETTERS E SETTERS
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_reca")
+	@JsonView({View.Avancado.class})
+	private Long id;
+
+	@Column(name = "reca_nome", length = 50, nullable = false)
+	@JsonView({View.Basico.class})
+	private String nome;
+
+	@Column(name = "reca_telefone_1", length = 11, nullable = false)
+	@JsonView({View.Basico.class})
+	private String telefone1;
+
+	@Column(name = "reca_telefone_2", length = 11)
+	@JsonView({View.Basico.class})
+	private String telefone2;
+
+	// GETTERS E SETTERS
 	public Long getId() {
 		return id;
 	}
@@ -48,20 +50,20 @@ public class Recado {
 		this.nome = nome;
 	}
 
-	public String getParentesco() {
-		return parentesco;
+	public String getTelefone1() {
+		return telefone1;
 	}
 
-	public void setParentesco(String parentesco) {
-		this.parentesco = parentesco;
+	public void setTelefone1(String telefone1) {
+		this.telefone1 = telefone1;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getTelefone2() {
+		return telefone2;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setTelefone2(String telefone2) {
+		this.telefone2 = telefone2;
 	}
 
 }

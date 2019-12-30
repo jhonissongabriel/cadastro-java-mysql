@@ -1,23 +1,29 @@
 package br.com.sabcolinas.cadastro.service;
 
+import java.util.List;
+
 import br.com.sabcolinas.cadastro.model.Veiculo;
 
 public interface VeiculoService {
 
-	public Veiculo createVeiculo(String tipo, String marca, String modelo, String cor, String placa);
+	public Veiculo create(Veiculo veiculo);
 
-	public void updateVeiculoTipo(String tipoAntigo, String tipoNovo);
+	public void delete(Long id);
 
-	public void updateVeiculoMarca(String marcaAntigo, String marcaNovo);
+	public void updateMarca(String marcaAntigo, String marcaNovo);
 
-	public void updateVeiculoModelo(String modeloAntigo, String modeloNovo);
+	public void updatePlaca(String placaAntigo, String placaNovo);
 
-	public void updateVeiculoCor(String corAntigo, String corNovo);
+	public void updateCor(String corAntigo, String corNovo);
 
-	public void updateVeiculoPlaca(String placaAntigo, String placaNovo);
+	public List<Veiculo> todos();
 
-	public void updateVeiculoObservacao(String observacaoAntigo, String observacaoNovo);
-	
-	public void deleteVeiculo(String placa);
+	public Veiculo buscarId(Long id);
+
+	public List<Veiculo> buscarMarca(String marca);
+
+	public List<Veiculo> buscarPlaca(String placa);
+
+	public List<Veiculo> buscarCor(String cor);
 
 }
